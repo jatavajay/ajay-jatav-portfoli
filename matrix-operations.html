@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matrix Operations Calculator</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+        }
+        
+        .matrix-input {
+            margin: 20px 0;
+        }
+        
+        .matrix-grid {
+            display: grid;
+            gap: 5px;
+            margin: 10px 0;
+            justify-content: center;
+        }
+        
+        .matrix-2x2 {
+            grid-template-columns: repeat(2, 60px);
+        }
+        
+        .matrix-3x3 {
+            grid-template-columns: repeat(3, 60px);
+        }
+        
+        .matrix-grid input {
+            width: 60px;
+            height: 60px;
+            text-align: center;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .matrix-grid input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 10px rgba(102, 126, 234, 0.3);
+        }
+        
+        .controls {
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        button {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            margin: 8px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+        
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+        
+        button:active {
+            transform: translateY(-1px);
+        }
+        
+        .result {
+            margin: 20px 0;
+            padding: 25px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 15px;
+            border-left: 5px solid #667eea;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            animation: fadeIn 0.5s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .matrix-display {
+            font-family: 'Courier New', monospace;
+            font-size: 20px;
+            text-align: center;
+            margin: 15px 0;
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid #e9ecef;
+        }
+        
+        .controls {
+            text-align: center;
+            margin: 25px 0;
+            padding: 20px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+        }
+        
+        .controls label {
+            font-weight: bold;
+            color: #333;
+            margin-right: 10px;
+        }
+        
+        .controls select {
+            padding: 8px 15px;
+            border-radius: 20px;
+            border: 2px solid #ddd;
+            font-size: 16px;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Matrix Operations Calculator</h1>
+        
+        <div class="controls">
+            <label>Matrix Size: </label>
+            <select id="matrixSize" onchange="changeMatrixSize()">
+                <option value="2">2x2</option>
+                <option value="3">3x3</option>
+            </select>
+        </div>
+        
+        <div class="matrix-input">
+            <h3>Matrix A:</h3>
+            <div id="matrixA" class="matrix-grid matrix-2x2"></div>
+        </div>
+        
+        <div class="matrix-input">
+            <h3>Matrix B:</h3>
+            <div id="matrixB" class="matrix-grid matrix-2x2"></div>
+        </div>
+        
+        <div class="controls">
+            <button onclick="addMatrices()">Add (A + B)</button>
+            <button onclick="subtractMatrices()">Subtract (A - B)</button>
+            <button onclick="multiplyMatrices()">Multiply (A × B)</button>
+            <button onclick="determinantA()">Det(A)</button>
+            <button onclick="transposeA()">Transpose(A)</button>
+            <button onclick="clearMatrices()">Clear All</button>
+        </div>
+        
+        <div id="result" class="result" style="display: none;">
+            <h3>Result:</h3>
+            <div id="resultMatrix" class="matrix-display"></div>
+        </div>
+    </div>
+
+    <script>
+        let size = 2;
+        
+        function changeMatrixSize() {
+            size = parseInt(document.getElementById('matrixSize').value);
+            createMatrixInputs();
+        }
+        
+        function createMatrixInputs() {
+            const matrixA = document.getElementById('matrixA');
+            const matrixB = document.getElementById('matrixB');
+            
+            matrixA.className = `matrix-grid matrix-${size}x${size}`;
+            matrixB.className = `matrix-grid matrix-${size}x${size}`;
+            
+            matrixA.innerHTML = '';
+            matrixB.innerHTML = '';
+            
+            for (let i = 0; i < size * size; i++) {
+                const inputA = document.createElement('input');
+                inputA.type = 'number';
+                inputA.value = '0';
+                inputA.id = `a${i}`;
+                matrixA.appendChild(inputA);
+                
+                const inputB = document.createElement('input');
+                inputB.type = 'number';
+                inputB.value = '0';
+                inputB.id = `b${i}`;
+                matrixB.appendChild(inputB);
+            }
+        }
+        
+        function getMatrix(prefix) {
+            const matrix = [];
+            for (let i = 0; i < size; i++) {
+                matrix[i] = [];
+                for (let j = 0; j < size; j++) {
+                    const value = parseFloat(document.getElementById(`${prefix}${i * size + j}`).value) || 0;
+                    matrix[i][j] = value;
+                }
+            }
+            return matrix;
+        }
+        
+        function displayResult(matrix, title = "Result") {
+            const resultDiv = document.getElementById('result');
+            const resultMatrix = document.getElementById('resultMatrix');
+            
+            if (typeof matrix === 'number') {
+                resultMatrix.innerHTML = `<strong>${title}: ${matrix}</strong>`;
+            } else {
+                let html = `<strong>${title}:</strong><br>`;
+                for (let i = 0; i < matrix.length; i++) {
+                    html += '[' + matrix[i].map(val => val.toFixed(2)).join(', ') + ']<br>';
+                }
+                resultMatrix.innerHTML = html;
+            }
+            
+            resultDiv.style.display = 'block';
+        }
+        
+        function addMatrices() {
+            const A = getMatrix('a');
+            const B = getMatrix('b');
+            const result = [];
+            
+            for (let i = 0; i < size; i++) {
+                result[i] = [];
+                for (let j = 0; j < size; j++) {
+                    result[i][j] = A[i][j] + B[i][j];
+                }
+            }
+            
+            displayResult(result, "A + B");
+        }
+        
+        function subtractMatrices() {
+            const A = getMatrix('a');
+            const B = getMatrix('b');
+            const result = [];
+            
+            for (let i = 0; i < size; i++) {
+                result[i] = [];
+                for (let j = 0; j < size; j++) {
+                    result[i][j] = A[i][j] - B[i][j];
+                }
+            }
+            
+            displayResult(result, "A - B");
+        }
+        
+        function multiplyMatrices() {
+            const A = getMatrix('a');
+            const B = getMatrix('b');
+            const result = [];
+            
+            for (let i = 0; i < size; i++) {
+                result[i] = [];
+                for (let j = 0; j < size; j++) {
+                    result[i][j] = 0;
+                    for (let k = 0; k < size; k++) {
+                        result[i][j] += A[i][k] * B[k][j];
+                    }
+                }
+            }
+            
+            displayResult(result, "A × B");
+        }
+        
+        function determinantA() {
+            const A = getMatrix('a');
+            let det;
+            
+            if (size === 2) {
+                det = A[0][0] * A[1][1] - A[0][1] * A[1][0];
+            } else if (size === 3) {
+                det = A[0][0] * (A[1][1] * A[2][2] - A[1][2] * A[2][1]) -
+                      A[0][1] * (A[1][0] * A[2][2] - A[1][2] * A[2][0]) +
+                      A[0][2] * (A[1][0] * A[2][1] - A[1][1] * A[2][0]);
+            }
+            
+            displayResult(det, "Determinant of A");
+        }
+        
+        function transposeA() {
+            const A = getMatrix('a');
+            const result = [];
+            
+            for (let i = 0; i < size; i++) {
+                result[i] = [];
+                for (let j = 0; j < size; j++) {
+                    result[i][j] = A[j][i];
+                }
+            }
+            
+            displayResult(result, "Transpose of A");
+        }
+        
+        function clearMatrices() {
+            for (let i = 0; i < size * size; i++) {
+                document.getElementById(`a${i}`).value = '0';
+                document.getElementById(`b${i}`).value = '0';
+            }
+            document.getElementById('result').style.display = 'none';
+        }
+        
+        function fillSampleData() {
+            if (size === 2) {
+                document.getElementById('a0').value = '1';
+                document.getElementById('a1').value = '2';
+                document.getElementById('a2').value = '3';
+                document.getElementById('a3').value = '4';
+                
+                document.getElementById('b0').value = '5';
+                document.getElementById('b1').value = '6';
+                document.getElementById('b2').value = '7';
+                document.getElementById('b3').value = '8';
+            } else {
+                document.getElementById('a0').value = '1';
+                document.getElementById('a1').value = '2';
+                document.getElementById('a2').value = '3';
+                document.getElementById('a3').value = '4';
+                document.getElementById('a4').value = '5';
+                document.getElementById('a5').value = '6';
+                document.getElementById('a6').value = '7';
+                document.getElementById('a7').value = '8';
+                document.getElementById('a8').value = '9';
+                
+                document.getElementById('b0').value = '9';
+                document.getElementById('b1').value = '8';
+                document.getElementById('b2').value = '7';
+                document.getElementById('b3').value = '6';
+                document.getElementById('b4').value = '5';
+                document.getElementById('b5').value = '4';
+                document.getElementById('b6').value = '3';
+                document.getElementById('b7').value = '2';
+                document.getElementById('b8').value = '1';
+            }
+        }
+        
+        // Initialize the page
+        createMatrixInputs();
+        
+        // Add sample data button after page loads
+        window.addEventListener('load', function() {
+            const controlsDiv = document.querySelector('.controls');
+            const sampleButton = document.createElement('button');
+            sampleButton.textContent = 'Fill Sample Data';
+            sampleButton.onclick = fillSampleData;
+            sampleButton.style.backgroundColor = '#28a745';
+            controlsDiv.appendChild(sampleButton);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,92 @@
+/* General styling */
+body {
+    background-color: #ebf1ad;
+    font-size: 1.15em;
+}
+
+h1, h2 {
+    text-align: center;
+    color: #333;
+}
+
+h1 {
+    margin-top: 20px;
+    font-size: 2.5em;
+    text-transform: uppercase;
+}
+
+h2 {
+    color: #555;
+}
+
+ul {
+    list-style-position: inside;
+}
+
+/* Navigation link styling */
+a {
+    color: #3a7cc2;
+}
+
+/* Table Styling */
+table {
+    width: 100%;
+    margin: 30px auto;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 12px;
+    text-align: center;
+}
+
+th {
+    background-color: #0a519c;
+    color: #fff;
+    font-weight: bold;
+}
+tr {background-color: #ebb3da;}
+
+/* Image styling */
+img {
+    display: flex;
+    margin: 0 auto;
+    border-radius: 20%;
+    }
+
+/* Footer styling */
+footer {
+    background-color: #56a7b6;
+    border-radius: 30%;
+    padding: 50px;
+    text-align: center;
+    margin-top: 5px;
+}
+
+footer a {
+    color: #251e86;
+}
+
+/* Contact and input styling */
+input[type="text"] {
+    padding: 5px;
+    border: 2px solid #d48918;
+    border-radius: 100px;
+    width: 35%;
+    display: block;
+    margin: 5% auto;
+}
+/* List styles */
+ul[type="circle"] {
+    list-style-type: circle;
+    padding-left: 40px;
+}
+
+ul[type="square"] {
+    list-style-type: square;
+    padding-left: 40px;
+}
+
+/* Specific sections */
+#education-section, #skills-section, #hobbies-section, #strength-weakness-section {
+    background-color: #394f64; }

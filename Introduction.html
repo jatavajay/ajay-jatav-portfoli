@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Bio-data</title>
+    <style>
+        /* Page-specific styling */
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+        
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            padding: 15px;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+            border-bottom: 3px solid #3498db;
+        }
+        
+        h2 {
+            color: #2c3e50;
+            border-left: 4px solid #3498db;
+            padding-left: 10px;
+            margin-top: 25px;
+        }
+        
+        img {
+            border-radius: 50%;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            margin: 20px auto;
+            display: block;
+            border: 3px solid #3498db;
+        }
+        
+        hr {
+            border: 0;
+            height: 1px;
+            background: #ccc;
+            background-image: linear-gradient(to right, rgba(0,0,0,0), rgba(0,0,0,0.3), rgba(0,0,0,0));
+            margin: 20px 0;
+        }
+        
+        ul {
+            background-color: rgba(255, 255, 255, 0.7);
+            padding: 15px 15px 15px 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        
+        li {
+            margin-bottom: 8px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            overflow: hidden;
+            border-radius: 8px;
+        }
+        
+        th {
+            background-color: #3498db;
+            color: white;
+            font-weight: bold;
+            padding: 12px;
+            text-align: center;
+        }
+        
+        td {
+            padding: 10px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+        
+        tr:nth-child(even) {
+            background-color: rgba(236, 240, 241, 0.8);
+        }
+        
+        tr:nth-child(odd) {
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+        
+        tr:hover {
+            background-color: rgba(189, 195, 199, 0.5);
+        }
+        
+        a {
+            color: #3498db;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        a:hover {
+            color: #2980b9;
+            text-decoration: underline;
+        }
+        
+        footer {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin-top: 30px;
+        }
+        
+        .section {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin-bottom: 25px;
+        }
+    </style>
+</head>
+<body>
+    <div class="section">
+        <h1><b>About Me</b></h1>
+        <img src="photo.jpg" width="150" height="150" style="object-fit: cover;" alt="my pic">
+        <h2>Ajay Jatav</h2>
+    <ul>
+        <li><strong>Father's Name:</strong> Mr. Raysingh Jatav</li>
+        <li><strong>D.O.B:</strong> 09/09/2004</li>
+    </ul>
+    </div>
+    
+    <div class="section">
+        <h2><b>Education</b></h2>
+        <ul type="circle">
+    <li>Completed Class 6 to Class 12 (Science stream – PCM) at Jawahar Navodaya Vidyalaya, Sheopur, Madhya Pradesh.</li>
+    <li>I was honored to be shortlisted for the prestigious Nivrati Gurukul program.</li>
+    <li>In 2024, I cleared JEE Mains and scored 82 percentile.</li>  
+    <li>I am currently pursuing a B.Tech in Computer Science from Sitare University.</li></pre>
+    <table border="3">
+            <tr>
+                <th>Class</th>
+                <th>School</th>
+                <th>Year</th>
+                <th>Percentage</th>
+            </tr>
+            <tbody>
+            <tr>
+                <td >10<sup>th</sup></td>
+                <td>JNV Sheopur</td>
+                <td>2021</td>
+                <td>86%</td>
+            </tr>
+            </tbody>
+            <tr>
+                <td>12<sup>th</sup></td>
+                <td>JNV Sheopur</td>
+                <td>2023</td>
+                <td>78%</td>
+            </tr>
+            <tr>
+                <td>JEE Main</td>
+                <td>Physics Wallah</td>
+                <td>2024</td>
+                <td>82%ile</td>
+            </tr>
+            <tr>
+                <td>B.Tech<br>1<sup>st</sup> Year</td>
+                <td>Sitare university</td>
+                <td>2024</td>
+                <td>____</td>
+                </table>
+                <p style="margin-top: 15px;">Visit my College: <a href="https://sitare.org" target="_blank">Sitare University</a></p>
+            </ul>
+    </div>
+    
+    <div class="section">
+        <h2>Hobbies</h2>
+        <ul>
+    <li>Solving coding problems in Python on LeetCode.</li>
+    <li>Building web applications using HTML, CSS, and JavaScript.</li>
+    <li>Playing team sports like volleyball and cricket.</li>
+    <li>I enjoy playing strategy-based online games like Free Fire, which enhance focus and decision-making.</li>
+    <li>I like watching humorous and creative content, which helps me stay positive and stress-free.</li>
+    </ul>
+    </div>
+    
+    <div class="section">
+        <h2>Skills</h2>
+        <ul type="square">
+    <li>Python</li>
+    <li>HTML</li>
+    <li>CSS</li>
+    <li>Java Script</li>
+    <li>Linux</li>
+    <li>Google Docs</li>
+    <li>Excel</li>
+    <li>Web coding</li>
+    </ul>
+    </div>
+    
+    <div class="section">
+        <h2>Strengths and Weaknesses</h2>
+        <ul type="circle">
+    <li>My strengths are that I learn from past experiences and always try to give my best in the present. I'm disciplined, good at teamwork, and I can manage multitasking by breaking work into smaller tasks and finishing them on time.</li>
+    <li>One of my weaknesses is that I feel more confident in one-to-one interactions than in public speaking, but I'm working on improving that. I also tend to look for smart and efficient ways to complete work, so I'm learning to balance that with hard work. And sometimes multitasking feels overwhelming, so I've started focusing more on prioritizing my tasks.</li>
+    </ul>
+    </div>
+    
+    <footer>
+        <h2>Address and Contact Details</h2>
+        <p><strong>Address:</strong> Jharbaroda, Iklod, Vijaypur, Sheopur, (M.P.) <br> <strong>Phone:</strong> +919302361631</p>
+        
+        <div style="margin: 15px 0;">
+            <a href="mailto:jatavaj09@gmail.com" style="margin-right: 15px;"><i>📧</i> Email</a>
+            <a href="https://www.linkedin.com/in/ajay-jatav-b15428207" target="_blank" style="margin-right: 15px;"><i>🔗</i> LinkedIn</a>
+            <a href="https://Github.com/jatavajay" target="_blank"><i>💻</i> GitHub</a>
+        </div>
+        
+        <h2>Other Subjects' Details:</h2>
+        <ul type="1" style="list-style-position: inside; padding-left: 0;">
+            <li><a href="python.html">Python Programming</a></li>
+            <li><a href="English communication and ethics.html">English Communication and Ethics</a></li>
+            <li><a href="Introduction to Computors.html">Introduction to Computers</a></li>
+            <li><a href="LA.html">Linear Algebra</a></li>
+        </ul>
+        
+        <div style="margin-top: 20px; text-align: center;"> 
+            <p>Presented by</p>
+            <input type="text" placeholder="AJAY JATAV">
+            <p>Guided By</p>
+            <input type="text" placeholder="Mr. Shankho Subhra Pal">
+        </div>
+    </footer>
+    
+    </div>
+</body>
+</html>
