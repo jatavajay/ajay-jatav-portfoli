@@ -1030,3 +1030,48 @@ section {
 .hamburger.active span:nth-child(3) {
     transform: rotate(-45deg) translate(6px, -6px);
 }
+
+/* Mobile Responsive Fix */
+@media (max-width: 768px) {
+
+  .nav-menu {
+    display: none;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  .hero-content {
+    flex-direction: column;
+    text-align: center;
+    gap: 2rem;
+  }
+
+  .hero-title {
+    font-size: 2rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1.2rem;
+  }
+
+  .hero-description {
+    font-size: 1rem;
+  }
+
+  .container {
+    padding: 0 15px;
+  }
+
+  .projects-grid,
+  .certificates-grid,
+  .skills-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .profile-image {
+    width: 100%;
+    height: auto;
+  }
+}
