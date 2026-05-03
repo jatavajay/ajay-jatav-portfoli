@@ -1075,3 +1075,13 @@ section {
     height: auto;
   }
 }
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+.hero-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
